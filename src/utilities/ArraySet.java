@@ -17,7 +17,8 @@ public class ArraySet<E> implements List<E>, Set<E>
 
 	public ArraySet()
 	{
-		// TODO Auto-generated constructor stub
+		_list = new ArrayList<E>();
+		
 	}
 
 	@Override
@@ -31,11 +32,10 @@ public class ArraySet<E> implements List<E>, Set<E>
 		return false;
 	}
 
-
 	@Override
 	public boolean contains(Object o) {
-		// TODO Auto-generated method stub
-		return false;
+		return _list.contains(o);
+		
 	}
 
 
