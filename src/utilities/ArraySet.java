@@ -23,13 +23,12 @@ public class ArraySet<E> implements List<E>, Set<E>
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		return _list.size();
 	}
+	
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		return size() == 0;
 	}
 
 	@Override
@@ -41,33 +40,28 @@ public class ArraySet<E> implements List<E>, Set<E>
 
 	@Override
 	public Iterator<E> iterator() {
-		// TODO Auto-generated method stub
-		return null;
+		return _list.iterator();
 	}
 
 	@Override
 	public Object[] toArray() {
-		// TODO Auto-generated method stub
-		return null;
+		return _list.toArray();
 	}
 
 	@Override
 	public <T> T[] toArray(T[] a) {
-		// TODO Auto-generated method stub
-		return null;
+		return _list.toArray(a);
 	}
 
 	@Override
 	public boolean add(E e) {
-		// TODO Auto-generated method stub
-		return false;
+		return _list.add(e); 
 	}
 
 
 	@Override
 	public boolean remove(Object o) {
-		// TODO Auto-generated method stub
-		return false;
+		return _list.remove(o);
 	}
 
 
@@ -80,15 +74,13 @@ public class ArraySet<E> implements List<E>, Set<E>
 
 	@Override
 	public boolean addAll(Collection<? extends E> c) {
-		// TODO Auto-generated method stub
-		return false;
+		return _list.containsAll(c);
 	}
 
 
 	@Override
 	public boolean addAll(int index, Collection<? extends E> c) {
-		// TODO Auto-generated method stub
-		return false;
+		return _list.addAll(index, c);
 	}
 
 	//  sophie VVVV
