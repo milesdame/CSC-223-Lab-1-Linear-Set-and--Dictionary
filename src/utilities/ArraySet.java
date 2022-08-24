@@ -13,6 +13,7 @@ public class ArraySet<E> implements List<E>, Set<E>
 	
 	protected ArrayList<E> _list;
 	
+	// miles VVVVVV
 
 	public ArraySet()
 	{
@@ -90,7 +91,9 @@ public class ArraySet<E> implements List<E>, Set<E>
 		return false;
 	}
 
-
+	//  sophie VVVV
+	
+	
 	@Override
 	public boolean removeAll(Collection<?> c) {
 		// TODO Auto-generated method stub
