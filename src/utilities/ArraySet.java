@@ -67,8 +67,7 @@ public class ArraySet<E> implements List<E>, Set<E>
 
 	@Override
 	public boolean containsAll(Collection<?> c) {
-		// TODO Auto-generated method stub
-		return false;
+		return _list.containsAll(c);
 	}
 
 
