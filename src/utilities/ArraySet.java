@@ -8,8 +8,11 @@ import java.util.ListIterator;
 import java.util.Set;
 import java.util.Spliterator;
 
+
 public class ArraySet<E> implements List<E>, Set<E>
 {
+	
+	protected static final boolean FAILED_OPERATION_BOOL = false;
 	
 	protected ArrayList<E> _list;
 	
@@ -20,7 +23,7 @@ public class ArraySet<E> implements List<E>, Set<E>
 		_list = new ArrayList<E>();
 		
 	}
-
+	
 	@Override
 	public int size() {
 		return _list.size();
@@ -28,7 +31,7 @@ public class ArraySet<E> implements List<E>, Set<E>
 	
 	@Override
 	public boolean isEmpty() {
-		return size() == 0;
+		return _list.isEmpty();
 	}
 
 	@Override
@@ -55,9 +58,12 @@ public class ArraySet<E> implements List<E>, Set<E>
 
 	@Override
 	public boolean add(E e) {
-		return _list.add(e); 
+		if (_list.contains(e)) {
+			return _list.add(e);
+		}
+		
+		return FAILED_OPERATION_BOOL;
 	}
-
 
 	@Override
 	public boolean remove(Object o) {
@@ -67,8 +73,7 @@ public class ArraySet<E> implements List<E>, Set<E>
 
 	@Override
 	public boolean containsAll(Collection<?> c) {
-		// TODO Auto-generated method stub
-		return false;
+		return _list.containsAll(c);
 	}
 
 
@@ -80,7 +85,18 @@ public class ArraySet<E> implements List<E>, Set<E>
 
 	@Override
 	public boolean addAll(int index, Collection<? extends E> c) {
-		return _list.addAll(index, c);
+		boolean changed = false;
+		
+		for (E item : c) {
+			if (!_list.contains(item)) {
+				_list.add(item);
+				
+				if (changed == false) {
+					changed = true;
+				}
+			}
+		}
+		return changed;
 	}
 
 	//  sophie VVVV
