@@ -76,8 +76,13 @@ public class ParallelArrayDictionary<Key, Value> implements Map<Key, Value> {
 	 */
 	@Override
 	public Value get(Object key) {
+		int index = -1;
+		
+		// Check to see if the key exists in the dictionary
+		// If it does then get the index of that key and then return the value at that index
 		if (this.containsKey(key)) {
-			return _values[_keys.indexOf(key)];
+			index = _keys.indexOf(key);
+			return _values.get(index);
 		}
 		
 		return null;
