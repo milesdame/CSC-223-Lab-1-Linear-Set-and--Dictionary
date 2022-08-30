@@ -96,27 +96,62 @@ public class ArraySet<E> implements List<E>, Set<E>
 		return _list.containsAll(c);
 	}
 
-
+	/**
+	 * AddAll - appends all elements in the collection at the end of the arrayset, but only if the elements in the collection do not already exist in the set
+	 * @param collection c
+	 * @return true if set was changed at all, false if it wasn't
+	 */
 	@Override
 	public boolean addAll(Collection<? extends E> c) {
-		return _list.containsAll(c);
+		int count = 0;
+		
+		for (E element : c) {
+			boolean added = _list.add(element); // !!!!!!!!!!!how do i know if this is using this class's add method instead of the ArrayList add method?
+			
+			if (added == FAILED_OPERATION_BOOL) {
+				count++;
+			}
+			
+		}	
+		
+		// if there are as many (or more...) failed operations as there are items in the collection, then we did not change anything.
+		if (count >= c.size()) {
+			return FAILED_OPERATION_BOOL;
+		} 
+		// if there are less failed operations than there are items in the collection, then we did change something.
+		else (count < c.size()) {
+			return true;
+		}
 	}
 
-
+	/**
+	 * AddAll - inserts all elements in the collection at the given index in the arrayset, but only if the elements in the collection does not already exist in the set
+	 * @param collection c
+	 * @return true if set was changed at all, false if it wasn't
+	 */
 	@Override
 	public boolean addAll(int index, Collection<? extends E> c) {
-		boolean changed = false;
-
-		for (E item : c) {
-			if (!_list.contains(item)) {
-				_list.add(item);
-
-				if (changed == false) {
-					changed = true;
-				}
+		int count = 0;
+		int currIndex = index;
+		
+		for (E element : c) {
+			boolean added = _list.add(currIndex, element); // !!!!!!!!!!!how do i know if this is using this class's add method instead of the ArrayList add method?
+			currIndex++; // go to the next index in the set to insert at
+			
+			if (added == FAILED_OPERATION_BOOL) {
+				count++;
 			}
+			
+		}	
+		
+		// if there are as many (or more...) failed operations as there are items in the collection, then we did not change anything.
+		if (count >= c.size()) {
+			return FAILED_OPERATION_BOOL;
+		} 
+		// if there are less failed operations than there are items in the collection, then we did change something.
+		else (count < c.size()) {
+			return true;
 		}
-		return changed;
 	}
 
 	//  sophie VVVV
