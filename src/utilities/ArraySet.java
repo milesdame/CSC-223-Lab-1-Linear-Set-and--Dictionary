@@ -1,3 +1,9 @@
+/**
+ * A class representing an ArraySet of unique objects
+ * 
+ * @author Miles Dame, Hanna King, Sophie Ngo
+ */
+
 package utilities;
 
 import java.util.ArrayList;
@@ -14,11 +20,25 @@ public class ArraySet<E> implements List<E>, Set<E>
 	protected ArrayList<E> _list;
 	
 	// miles VVVVVV
-
+	/**
+	 * Creates a new ArraySet with generic type
+	 */
 	public ArraySet()
 	{
 		_list = new ArrayList<E>();
 		
+	}
+	
+	/**
+	 * Creates a new ArraySet with Collection of generic type objects
+	 * @param collection
+	 */
+	public ArraySet(Collection<E> collection) {
+		this();
+		
+		for (E item : collection) {
+			add(item);
+		}
 	}
 
 	@Override
@@ -77,7 +97,7 @@ public class ArraySet<E> implements List<E>, Set<E>
 	}
 
 
-	@Override
+	@Override 
 	public boolean addAll(int index, Collection<? extends E> c) {
 		return _list.addAll(index, c);
 	}
