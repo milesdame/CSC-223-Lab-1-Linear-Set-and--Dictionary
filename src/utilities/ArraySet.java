@@ -1,6 +1,6 @@
 /**
  * A class representing an ArraySet of unique objects
- * 
+ *
  * @author Miles Dame, Hanna King, Sophie Ngo
  */
 
@@ -14,11 +14,14 @@ import java.util.ListIterator;
 import java.util.Set;
 import java.util.Spliterator;
 
+
 public class ArraySet<E> implements List<E>, Set<E>
 {
-	
+
+	protected static final boolean FAILED_OPERATION_BOOL = false;
+
 	protected ArrayList<E> _list;
-	
+
 	// miles VVVVVV
 	/**
 	 * Creates a new ArraySet with generic type
@@ -26,16 +29,16 @@ public class ArraySet<E> implements List<E>, Set<E>
 	public ArraySet()
 	{
 		_list = new ArrayList<E>();
-		
+
 	}
-	
+
 	/**
 	 * Creates a new ArraySet with Collection of generic type objects
 	 * @param collection
 	 */
 	public ArraySet(Collection<E> collection) {
 		this();
-		
+
 		for (E item : collection) {
 			add(item);
 		}
@@ -45,16 +48,16 @@ public class ArraySet<E> implements List<E>, Set<E>
 	public int size() {
 		return _list.size();
 	}
-	
+
 	@Override
 	public boolean isEmpty() {
-		return size() == 0;
+		return _list.isEmpty();
 	}
 
 	@Override
 	public boolean contains(Object o) {
 		return _list.contains(o);
-		
+
 	}
 
 
@@ -75,9 +78,12 @@ public class ArraySet<E> implements List<E>, Set<E>
 
 	@Override
 	public boolean add(E e) {
-		return _list.add(e); 
-	}
+		if (_list.contains(e)) {
+			return _list.add(e);
+		}
 
+		return FAILED_OPERATION_BOOL;
+	}
 
 	@Override
 	public boolean remove(Object o) {
@@ -97,14 +103,25 @@ public class ArraySet<E> implements List<E>, Set<E>
 	}
 
 
-	@Override 
+	@Override
 	public boolean addAll(int index, Collection<? extends E> c) {
-		return _list.addAll(index, c);
+		boolean changed = false;
+
+		for (E item : c) {
+			if (!_list.contains(item)) {
+				_list.add(item);
+
+				if (changed == false) {
+					changed = true;
+				}
+			}
+		}
+		return changed;
 	}
 
 	//  sophie VVVV
-	
-	
+
+
 	@Override
 	// removes all items in collection c from _list
 	// returns true if _list changed at all
