@@ -42,7 +42,8 @@ public class ArraySet<E> implements List<E>, Set<E>
 	 * Creates a new ArraySet with Collection of generic type objects
 	 * @param collection - collection to be used as the arrayset
 	 */
-	public ArraySet(Collection<E> collection) {
+	public ArraySet(Collection<E> collection)
+	{
 		this();
 
 		for (E item : collection) {
