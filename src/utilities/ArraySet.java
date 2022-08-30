@@ -60,7 +60,6 @@ public class ArraySet<E> implements List<E>, Set<E>
 
 	}
 
-
 	@Override
 	public Iterator<E> iterator() {
 		return _list.iterator();
@@ -126,7 +125,7 @@ public class ArraySet<E> implements List<E>, Set<E>
 
 	/**
 	 * AddAll - inserts all elements in the collection at the given index in the arrayset, but only if the elements in the collection does not already exist in the set
-	 * @param collection c
+	 * @param int index, collection c
 	 * @return true if set was changed at all, false if it wasn't
 	 */
 	@Override
