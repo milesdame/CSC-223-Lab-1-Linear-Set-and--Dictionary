@@ -148,7 +148,7 @@ public class ArraySet<E> implements List<E>, Set<E>
 			return FAILED_OPERATION_BOOL;
 		} 
 		// if there are less failed operations than there are items in the collection, then we did change something.
-		else (count < c.size()) {
+		else {
 			return true;
 		}
 	}
@@ -191,7 +191,11 @@ public class ArraySet<E> implements List<E>, Set<E>
 	@Override
 	// inserts the element at the index (all elements to the right are shifted right by one)
 	public void add(int index, E element) {
-		_list.add(index, element);
+		if (_list.contains(e)) {
+			return _list.add(index, e);
+		}
+
+		return FAILED_OPERATION_BOOL;
 	}
 
 	@Override

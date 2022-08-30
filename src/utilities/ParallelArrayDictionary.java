@@ -84,7 +84,7 @@ public class ParallelArrayDictionary<Key, Value> implements Map<Key, Value> {
 	}
 
 	/**
-	 * put - associates the given value to the given key. if the key already exists in the dictionary, replace its old value with the given value
+	 * Associates the given value to the given key. If the key already exists in the dictionary, replace its old value with the given value
 	 * @param key
 	 * @param value
 	 * @return the old value of the specified key. if the key did not already exist, returns null
@@ -109,7 +109,9 @@ public class ParallelArrayDictionary<Key, Value> implements Map<Key, Value> {
 
 	/**
 	 * Removes the mapping of the specified key.
-	 *
+	 * @param key
+	 * @return the old value associated with the key. if there was no such key in the dictionary, returns null
+	 * 
 	 */
 	@Override
 	public Value remove(Object key) {
