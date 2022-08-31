@@ -116,10 +116,115 @@ class ParallelArrayDictionaryTest
 		assertFalse(arr.containsValue(20));
 	}
 
+	/**
+	 * empty
+	 * no overlap
+	 * some overlap
+	 * full overlap
+	 * same keys, different values
+	 */
 	@Test
-	void testPutAll()
+	void testPutAll_empty()
 	{
+		ParallelArrayDictionary<Character, Integer> arr1 = new ParallelArrayDictionary<Character, Integer>();
+		arr1.put('A', 1);
+		arr1.put('B', 2);
 		
+		ParallelArrayDictionary<Character, Integer> arr2 = new ParallelArrayDictionary<Character, Integer>();
+		
+		arr1.putAll(arr2);
+		
+		assertEquals(arr1.size(), 2);
+		assertTrue(arr1.containsKey('A'));
+		assertTrue(arr1.containsKey('B'));
+		assertTrue(arr1.containsValue(1));
+		assertTrue(arr1.containsValue(2));
+	}
+	
+	@Test
+	void testPutAll_noOverlap()
+	{
+		ParallelArrayDictionary<Character, Integer> arr1 = new ParallelArrayDictionary<Character, Integer>();
+		arr1.put('A', 1);
+		arr1.put('B', 2);
+		
+		ParallelArrayDictionary<Character, Integer> arr2 = new ParallelArrayDictionary<Character, Integer>();
+		arr2.put('C', 3);
+		arr2.put('D', 4);
+		
+		arr1.putAll(arr2);
+		
+		assertEquals(arr1.size(), 4);
+		assertTrue(arr1.containsKey('A'));
+		assertTrue(arr1.containsKey('B'));
+		assertTrue(arr1.containsKey('C'));
+		assertTrue(arr1.containsKey('D'));
+		assertTrue(arr1.containsValue(1));
+		assertTrue(arr1.containsValue(2));
+		assertTrue(arr1.containsValue(3));
+		assertTrue(arr1.containsValue(4));
+	}
+	
+	@Test
+	void testPutAll_someOverlap()
+	{
+		ParallelArrayDictionary<Character, Integer> arr1 = new ParallelArrayDictionary<Character, Integer>();
+		arr1.put('A', 1);
+		arr1.put('B', 2);
+		
+		ParallelArrayDictionary<Character, Integer> arr2 = new ParallelArrayDictionary<Character, Integer>();
+		arr2.put('A', 1);
+		arr2.put('D', 4);
+		
+		arr1.putAll(arr2);
+		
+		assertEquals(arr1.size(), 3);
+		assertTrue(arr1.containsKey('A'));
+		assertTrue(arr1.containsKey('B'));
+		assertTrue(arr1.containsKey('D'));
+		assertTrue(arr1.containsValue(1));
+		assertTrue(arr1.containsValue(2));
+		assertTrue(arr1.containsValue(4));
+	}
+	
+	@Test 
+	void testPutAll_fullOverlap()
+	{
+		ParallelArrayDictionary<Character, Integer> arr1 = new ParallelArrayDictionary<Character, Integer>();
+		arr1.put('A', 1);
+		arr1.put('B', 2);
+		
+		ParallelArrayDictionary<Character, Integer> arr2 = new ParallelArrayDictionary<Character, Integer>();
+		arr2.put('A', 1);
+		arr2.put('B', 2);
+		
+		arr1.putAll(arr2);
+		
+		assertEquals(arr1.size(), 2);
+		assertTrue(arr1.containsKey('A'));
+		assertTrue(arr1.containsKey('B'));
+		assertTrue(arr1.containsValue(1));
+		assertTrue(arr1.containsValue(2));
+	}
+	
+	@Test
+	void testPutAll_sameKeysDiffValues()
+	{
+		ParallelArrayDictionary<Character, Integer> arr1 = new ParallelArrayDictionary<Character, Integer>();
+		arr1.put('A', 1);
+		arr1.put('B', 2);
+		
+		ParallelArrayDictionary<Character, Integer> arr2 = new ParallelArrayDictionary<Character, Integer>();
+		arr2.put('A', 3);
+		arr2.put('B', 4);
+		
+		arr1.putAll(arr2);
+		
+		assertEquals(arr1.size(), 2);
+		assertTrue(arr1.containsKey('A'));
+		assertTrue(arr1.containsKey('B'));
+		assertTrue(arr1.get('A') == 3);
+		assertTrue(arr1.get('A') == 4);
 	}
 
 	/*
