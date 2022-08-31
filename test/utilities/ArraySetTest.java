@@ -43,14 +43,6 @@ class ArraySetTest
 		assertEquals(list.get(0), (Integer) 3);
 	}
 	
-	@Test
-	void testArraySetCollectionofE_difftypes()
-	{
-		ArrayList<Integer> collection = new ArrayList<Integer>();
-
-		assertThrows(Exception.class, () -> {ArraySet<Integer> list = new ArraySet<String>(collection);});
-	}
-
 	/*
 	 * Add to empty
 	 * add non-redundant to not empty
@@ -590,7 +582,6 @@ class ArraySetTest
 	 * both full, with full overlap
 	 * both full, with some overlap
 	 * both full, with no overlap
-	 * different types?
 	 */
 	@Test
 	void testRemoveAll_bothempty()
