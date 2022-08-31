@@ -130,10 +130,17 @@ public class ParallelArrayDictionary<Key, Value> implements Map<Key, Value> {
 		
 		return oldValue;
 	}
-
+	
+	/**
+	 * Adds all elements from a map object to the dictionary
+	 * @param a map object to 
+	 */
 	@Override
 	public void putAll(Map<? extends Key, ? extends Value> m) {
-		// TODO Auto-generated method stub
+		//m.forEach((k, v) -> System.out.println("Key : " + k + ", Value : " + v));
+		for (Entry<? extends Key, ? extends Value> entry : m.entrySet()) {
+			this.put(entry.getKey(), entry.getValue());
+		}
 		
 	}
 

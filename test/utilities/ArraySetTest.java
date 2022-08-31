@@ -174,9 +174,6 @@ class ArraySetTest
 		ArraySet<Integer> list = new ArraySet<Integer>(toAdd);
 		
 		assertTrue(list.addAll(collection));
-		for (int i = 0; i < list.size(); i++) {
-			System.out.println(list.get(i));
-		}
 		assertEquals(list.size(), 4);
 		assertEquals(list.get(0), (Integer) 0);
 		assertEquals(list.get(1), (Integer) 1);
