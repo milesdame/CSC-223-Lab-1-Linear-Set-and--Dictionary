@@ -1,5 +1,6 @@
 package utilities;
 
+import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
@@ -160,10 +161,22 @@ public class ParallelArrayDictionary<Key, Value> implements Map<Key, Value> {
 		return this.values();
 	}
 
+	/**
+	 * Returns a set view of all mappings in the dictionary. 
+	 * Each element of the set is a map.Entry containing one key, value pair
+	 * @param none
+	 * @return - a set which contains all mappings in the dictionary
+	 */
 	@Override
 	public Set<Entry<Key, Value>> entrySet() {
-		// edit
-		return null;
+		Set<Entry<Key, Value>> entrySet = null;
+
+		for (Key key : _keys) {
+			Value value = this.get(key);
+ 			entrySet.add(new AbstractMap.SimpleEntry<Key, Value>(key, value));
+			
+		}
+		return entrySet;
 	}
 
 }
