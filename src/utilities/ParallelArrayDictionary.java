@@ -24,7 +24,7 @@ public class ParallelArrayDictionary<Key, Value> implements Map<Key, Value> {
 	/**
 	 * Constructor - initialize the dictionary's keys and values.
 	 * The key container is an ArraySet.
-	 * The value containter is an ArrayList.
+	 * The value container is an ArrayList.
 	 */
 	public ParallelArrayDictionary()
 	{
@@ -136,10 +136,13 @@ public class ParallelArrayDictionary<Key, Value> implements Map<Key, Value> {
 		
 	}
 
+	/**
+	 * Removes all keys and all values
+	 */
 	@Override
 	public void clear() {
-		// TODO Auto-generated method stub
-		
+		_keys.clear();
+		_values.clear();
 	}
 
 	/**
