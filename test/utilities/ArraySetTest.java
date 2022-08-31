@@ -48,7 +48,7 @@ class ArraySetTest
 	{
 		ArrayList<Integer> collection = new ArrayList<Integer>();
 
-		assertThrows(Exception, () -> {ArraySet<Integer> list = new ArraySet<String>(collection);});
+		assertThrows(Exception.class, () -> {ArraySet<Integer> list = new ArraySet<String>(collection);});
 	}
 
 	/*
@@ -75,7 +75,7 @@ class ArraySetTest
 		list.add(7);
 		
 		assertTrue(list.add(4));
-		assertEquals(list.size());
+		assertEquals(list.size(), 2);
 		assertEquals(list.get(1), (Integer) 4);
 	}
 	
@@ -89,7 +89,7 @@ class ArraySetTest
 		list.add(4);
 		
 		assertTrue(list.add(7));
-		assertEquals(list.size());
+		assertEquals(list.size(), 2);
 		assertEquals(list.get(0), (Integer) 7);
 		assertEquals(list.get(1), (Integer) 4);
 	}
@@ -99,7 +99,7 @@ class ArraySetTest
 	{
 		ArraySet<Integer> list = new ArraySet<Integer>();
 		
-		assertRaises(Exception, () -> {list.add("string");});
+		assertThrows(Exception.class, () -> {list.add("string");});
 	}
 
 	/*
@@ -139,8 +139,8 @@ class ArraySetTest
 	void testAddAllCollectionOfQextendsE_nonlistemptycollection()
 	{
 		ArrayList<Integer> toAdd = new ArrayList<Integer>();
-		collection.add(3);
-		collection.add(5);
+		toAdd.add(3);
+		toAdd.add(5);
 
 		ArraySet<Integer> list = new ArraySet<Integer>(toAdd);
 		
@@ -190,7 +190,7 @@ class ArraySetTest
 		ArraySet<Integer> list = new ArraySet<Integer>(toAdd);
 		
 		assertTrue(list.addAll(collection));
-		assertEquals(list.size(), (Integer) 4);
+		assertEquals(list.size(), 4);
 		assertEquals(list.get(0), (Integer) 3);
 		assertEquals(list.get(1), (Integer) 5);
 		assertEquals(list.get(2), (Integer) 0);
@@ -402,7 +402,7 @@ class ArraySetTest
 	}
 	
 	@Test
-	void testAddAllIntCollectionOfQextendsE_nooverlapstart()
+	void testAddAllIntCollectionOfQextendsE_nooverlapmiddle()
 	{
 		ArrayList<Integer> collection = new ArrayList<Integer>();
 		collection.add(0);
@@ -425,7 +425,7 @@ class ArraySetTest
 	}
 	
 	@Test
-	void testAddAllIntCollectionOfQextendsE_doubleinstart()
+	void testAddAllIntCollectionOfQextendsE_doubleinmiddle()
 	{
 		ArrayList<Integer> collection = new ArrayList<Integer>();
 		collection.add(5);
@@ -447,7 +447,7 @@ class ArraySetTest
 	}
 	
 	@Test
-	void testAddAllIntCollectionOfQextendsE_emptystart()
+	void testAddAllIntCollectionOfQextendsE_emptymiddle()
 	{
 		ArrayList<Integer> collection = new ArrayList<Integer>();
 
@@ -478,7 +478,7 @@ class ArraySetTest
 		
 		ArraySet<Integer> list = new ArraySet<Integer>(toAdd);
 		
-		assertThrows(Exception, () -> {list.addAll(400, collection);});
+		assertThrows(Exception.class, () -> {list.addAll(400, collection);});
 	}
 	
 	/*
@@ -561,7 +561,7 @@ class ArraySetTest
 		
 		assertTrue(list.retainAll(collection));
 		assertEquals(list.size(), 1);
-		assertEquals(list.get(0), 2);
+		assertEquals(list.get(0), (Integer) 2);
 	}
 	
 	@Test
@@ -578,7 +578,7 @@ class ArraySetTest
 		ArraySet<Integer> list = new ArraySet<Integer>(toAdd);
 		
 		assertFalse(list.retainAll(collection));
-		assertEquals(list.size(), (Integer) 2);
+		assertEquals(list.size(), 2);
 		assertEquals(list.get(0), (Integer) 0);
 		assertEquals(list.get(1), (Integer) 1);
 	}
@@ -676,6 +676,7 @@ class ArraySetTest
 		assertEquals(list.get(1), (Integer) 4);
 		assertEquals(list.get(2), (Integer) 5);
 	}
+	
 	@Test
 	void testRemoveAll_difftypes()
 	{
@@ -686,5 +687,6 @@ class ArraySetTest
 		ArraySet<Integer> list = new ArraySet<Integer>(toAdd);
 		ArrayList<String> collection = new ArrayList<String>();
 		
-		assertThrows(Exception, () -> {list.removeAll(collection);});
+		assertThrows(Exception.class, () -> {list.removeAll(collection);});
 	}
+}
