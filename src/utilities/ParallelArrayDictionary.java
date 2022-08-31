@@ -135,7 +135,7 @@ public class ParallelArrayDictionary<Key, Value> implements Map<Key, Value> {
 	public void putAll(Map<? extends Key, ? extends Value> m) {
 		//m.forEach((k, v) -> System.out.println("Key : " + k + ", Value : " + v));
 		for (Entry<? extends Key, ? extends Value> entry : m.entrySet()) {
-			System.out.println("Key : " + entry.getKey() + ", Value : " + entry.getValue());
+			this.put(entry.getKey(), entry.getValue());
 		}
 		
 	}
