@@ -132,7 +132,10 @@ public class ParallelArrayDictionary<Key, Value> implements Map<Key, Value> {
 
 	@Override
 	public void putAll(Map<? extends Key, ? extends Value> m) {
-		// TODO Auto-generated method stub
+		//m.forEach((k, v) -> System.out.println("Key : " + k + ", Value : " + v));
+		for (Entry<? extends Key, ? extends Value> entry : m.entrySet()) {
+			System.out.println("Key : " + entry.getKey() + ", Value : " + entry.getValue());
+		}
 		
 	}
 
