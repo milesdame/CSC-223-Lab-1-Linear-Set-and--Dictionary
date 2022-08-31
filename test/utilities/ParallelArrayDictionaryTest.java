@@ -107,12 +107,6 @@ class ParallelArrayDictionaryTest
 		arr.put('A', 4);
 		arr.put('Z', 20);
 		
-		for (Character key : arr.keySet()) {
-			System.out.println(key);
-		}
-		for (Integer value : arr.values()) {
-			System.out.println(value);
-		}
 		arr.remove('Z');
 		
 		assertEquals(null, arr.remove('Z'));
@@ -230,7 +224,7 @@ class ParallelArrayDictionaryTest
 		assertTrue(arr1.containsKey('A'));
 		assertTrue(arr1.containsKey('B'));
 		assertTrue(arr1.get('A') == 3);
-		assertTrue(arr1.get('A') == 4);
+		assertTrue(arr1.get('B') == 4);
 	}
 
 	/*

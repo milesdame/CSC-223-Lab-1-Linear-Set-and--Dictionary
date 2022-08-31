@@ -181,7 +181,7 @@ public class ParallelArrayDictionary<Key, Value> implements Map<Key, Value> {
 	 */
 	@Override
 	public Set<Entry<Key, Value>> entrySet() {
-		Set<Entry<Key, Value>> entrySet = new Set();
+		Set<Entry<Key, Value>> entrySet = new ArraySet<Entry<Key, Value>>();
 
 		for (Key key : _keys) {
 			Value value = this.get(key);
