@@ -80,18 +80,10 @@ class ArraySetTest
 		
 		list.add(4);
 		
-		assertTrue(list.add(7));
+		assertFalse(list.add(7));
 		assertEquals(list.size(), 2);
 		assertEquals(list.get(0), (Integer) 7);
 		assertEquals(list.get(1), (Integer) 4);
-	}
-	
-	@Test
-	void testAddE_wrongtype()
-	{
-		ArraySet<Integer> list = new ArraySet<Integer>();
-		
-		assertThrows(Exception.class, () -> {list.add("string");});
 	}
 
 	/*
@@ -160,11 +152,11 @@ class ArraySetTest
 		
 		assertTrue(list.addAll(collection));
 		assertEquals(list.size(), 5);
-		assertEquals(list.get(0), (Integer) 3);
-		assertEquals(list.get(1), (Integer) 5);
-		assertEquals(list.get(2), (Integer) 0);
-		assertEquals(list.get(3), (Integer) 1);
-		assertEquals(list.get(4), (Integer) 2);
+		assertEquals(list.get(0), (Integer) 0);
+		assertEquals(list.get(1), (Integer) 1);
+		assertEquals(list.get(2), (Integer) 2);
+		assertEquals(list.get(3), (Integer) 3);
+		assertEquals(list.get(4), (Integer) 5);
 	}
 	
 	@Test
@@ -182,11 +174,14 @@ class ArraySetTest
 		ArraySet<Integer> list = new ArraySet<Integer>(toAdd);
 		
 		assertTrue(list.addAll(collection));
+		for (int i = 0; i < list.size(); i++) {
+			System.out.println(list.get(i));
+		}
 		assertEquals(list.size(), 4);
-		assertEquals(list.get(0), (Integer) 3);
-		assertEquals(list.get(1), (Integer) 5);
-		assertEquals(list.get(2), (Integer) 0);
-		assertEquals(list.get(3), (Integer) 1);
+		assertEquals(list.get(0), (Integer) 0);
+		assertEquals(list.get(1), (Integer) 1);
+		assertEquals(list.get(2), (Integer) 3);
+		assertEquals(list.get(3), (Integer) 5);
 	}
 	
 	@Test
@@ -289,8 +284,8 @@ class ArraySetTest
 		
 		assertFalse(list.addAll(0, collection));
 		assertEquals(list.size(), 2);
-		assertEquals(list.get(1), (Integer) 3);
-		assertEquals(list.get(2), (Integer) 9);
+		assertEquals(list.get(0), (Integer) 3);
+		assertEquals(list.get(1), (Integer) 9);
 	}
 	
 	@Test
@@ -306,7 +301,7 @@ class ArraySetTest
 		
 		ArraySet<Integer> list = new ArraySet<Integer>(toAdd);
 		
-		assertTrue(list.addAll(1, collection));
+		assertTrue(list.addAll(2, collection));
 		assertEquals(list.size(), 3);
 		assertEquals(list.get(0), (Integer) 3);
 		assertEquals(list.get(1), (Integer) 9);
@@ -326,7 +321,7 @@ class ArraySetTest
 		
 		ArraySet<Integer> list = new ArraySet<Integer>(toAdd);
 		
-		assertTrue(list.addAll(1, collection));
+		assertTrue(list.addAll(2, collection));
 		assertEquals(list.size(), 4);
 		assertEquals(list.get(0), (Integer) 3);
 		assertEquals(list.get(1), (Integer) 9);
@@ -347,7 +342,7 @@ class ArraySetTest
 		
 		ArraySet<Integer> list = new ArraySet<Integer>(toAdd);
 		
-		assertTrue(list.addAll(1, collection));
+		assertTrue(list.addAll(2, collection));
 		assertEquals(list.size(), 3);
 		assertEquals(list.get(0), (Integer) 3);
 		assertEquals(list.get(1), (Integer) 9);
@@ -367,8 +362,8 @@ class ArraySetTest
 		
 		assertFalse(list.addAll(1, collection));
 		assertEquals(list.size(), 2);
-		assertEquals(list.get(1), (Integer) 3);
-		assertEquals(list.get(2), (Integer) 9);
+		assertEquals(list.get(0), (Integer) 3);
+		assertEquals(list.get(1), (Integer) 9);
 	}
 	
 	@Test
@@ -450,11 +445,11 @@ class ArraySetTest
 		
 		ArraySet<Integer> list = new ArraySet<Integer>(toAdd);
 		
-		assertFalse(list.addAll(1, collection));
+		assertFalse(list.addAll(2, collection));
 		assertEquals(list.size(), 3);
-		assertEquals(list.get(1), (Integer) 3);
-		assertEquals(list.get(2), (Integer) 9);
-		assertEquals(list.get(3), (Integer) 38);
+		assertEquals(list.get(0), (Integer) 3);
+		assertEquals(list.get(1), (Integer) 9);
+		assertEquals(list.get(2), (Integer) 38);
 	}
 	
 	@Test
@@ -668,16 +663,4 @@ class ArraySetTest
 		assertEquals(list.get(2), (Integer) 5);
 	}
 	
-	@Test
-	void testRemoveAll_difftypes()
-	{
-		ArrayList<Integer> toAdd = new ArrayList<Integer>();
-		toAdd.add(3);
-		toAdd.add(4);
-		
-		ArraySet<Integer> list = new ArraySet<Integer>(toAdd);
-		ArrayList<String> collection = new ArrayList<String>();
-		
-		assertThrows(Exception.class, () -> {list.removeAll(collection);});
-	}
 }

@@ -47,7 +47,7 @@ public class ArraySet<E> implements List<E>, Set<E>
 		this();
 
 		for (E item : collection) {
-			_list.add(item);
+			this.add(item);
 		}
 	}
 
@@ -152,7 +152,7 @@ public class ArraySet<E> implements List<E>, Set<E>
 		int failedCount = 0;
 		
 		for (E element : c) {
-			boolean added = _list.add(element); // !!!!!!!!!!!how do i know if this is using this class's add method instead of the ArrayList add method?
+			boolean added = this.add(element); 
 			
 			if (added == FAILED_OPERATION_BOOL) {
 				failedCount++;  // unsuccessful adds are counted
@@ -182,14 +182,17 @@ public class ArraySet<E> implements List<E>, Set<E>
 		int currIndex = index;
 		
 		for (E element : c) {
-			_list.add(currIndex, element); // !!!!!!!!!!!how do i know if this is using this class's add method instead of the ArrayList add method?
-			
-			if (_list.contains(element)) { // check if the add was successful
-				currIndex++; // go to the next index in the set to insert at
+			if (!_list.contains(element)) {
 				
-			} else {
+				this.add(currIndex, element); 
+
+				currIndex++; // go to the next index in the set to insert at
+			}
+			else {
+				
 				failedCount++; // unsuccessful adds are counted
-			}			
+			}
+		
 		}	
 		
 		// if there are less failedCount operations than there are items in the collection, then we did change something.
