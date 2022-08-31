@@ -1,6 +1,7 @@
 package utilities;
 
 import java.util.AbstractMap;
+import java.util.AbstractSet;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
@@ -40,7 +41,7 @@ public class ParallelArrayDictionary<Key, Value> implements Map<Key, Value> {
 	 */
 	@Override
 	public int size() {
-		return this.size();
+		return _keys.size();
 	}
 
 	/**
@@ -50,7 +51,7 @@ public class ParallelArrayDictionary<Key, Value> implements Map<Key, Value> {
 	 */
 	@Override
 	public boolean isEmpty() {
-		return this.isEmpty();
+		return _keys.isEmpty();
 	}
 
 	/**
@@ -60,7 +61,7 @@ public class ParallelArrayDictionary<Key, Value> implements Map<Key, Value> {
 	 */
 	@Override
 	public boolean containsKey(Object key) {
-		return this.containsKey(key);
+		return _keys.contains(key);
 	}
 
 	/**
@@ -70,7 +71,7 @@ public class ParallelArrayDictionary<Key, Value> implements Map<Key, Value> {
 	 */
 	@Override
 	public boolean containsValue(Object value) {
-		return this.containsValue(value);
+		return _values.contains(value);
 	}
 
 	/**
@@ -124,6 +125,7 @@ public class ParallelArrayDictionary<Key, Value> implements Map<Key, Value> {
 		Value oldValue = null;
 		
 		if (this.containsKey(key)) {
+			oldValue = this.get(key);
 			_values.remove(_keys.indexOf(key));
 			_keys.remove(key);
 		}
@@ -159,7 +161,7 @@ public class ParallelArrayDictionary<Key, Value> implements Map<Key, Value> {
 	 */
 	@Override
 	public Set<Key> keySet() {
-		return this.keySet();
+		return _keys;
 	}
 
 	/**
@@ -168,7 +170,7 @@ public class ParallelArrayDictionary<Key, Value> implements Map<Key, Value> {
 	 */
 	@Override
 	public Collection<Value> values() {
-		return this.values();
+		return _values;
 	}
 
 	/**
@@ -179,7 +181,7 @@ public class ParallelArrayDictionary<Key, Value> implements Map<Key, Value> {
 	 */
 	@Override
 	public Set<Entry<Key, Value>> entrySet() {
-		Set<Entry<Key, Value>> entrySet = null;
+		Set<Entry<Key, Value>> entrySet = new Set();
 
 		for (Key key : _keys) {
 			Value value = this.get(key);

@@ -29,7 +29,7 @@ class ParallelArrayDictionaryTest
 		arr.put('A', 4);
 		arr.put('Z', 20);
 		
-		assertEquals(null, 'M');
+		assertEquals(null, arr.get('M'));
 	}
 	
 	@Test
@@ -39,7 +39,7 @@ class ParallelArrayDictionaryTest
 		arr.put('A', 4);
 		arr.put('Z', 20);
 		
-		assertEquals(20, 'Z');
+		assertEquals((Integer)20, arr.get('Z'));
 	}
 
 	/*
@@ -107,6 +107,12 @@ class ParallelArrayDictionaryTest
 		arr.put('A', 4);
 		arr.put('Z', 20);
 		
+		for (Character key : arr.keySet()) {
+			System.out.println(key);
+		}
+		for (Integer value : arr.values()) {
+			System.out.println(value);
+		}
 		arr.remove('Z');
 		
 		assertEquals(null, arr.remove('Z'));
