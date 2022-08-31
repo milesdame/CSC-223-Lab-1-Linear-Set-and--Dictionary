@@ -9,7 +9,7 @@ import java.util.Set;
  * A ParallelArrayDictionary is a dictionary whose keys and values are associated via sharing an index.
  * The key container is an ArraySet, meaning it can contain only unique values but is also indexable.
  * The value container is an ArrayList, so it is also indexable.
- * A key is associated to the value who is at the same index in their respective containers.
+ * A key is associated to the value that is at the same index in their respective containers.
  * 
  * @author Sophie, Hanna, Miles
  *
@@ -54,6 +54,7 @@ public class ParallelArrayDictionary<Key, Value> implements Map<Key, Value> {
 
 	/**
 	 * Return whether the dictionary contains a mapping for the specified key.
+	 * @param key - the key to find
 	 * @return true if it does, false if it doesn't
 	 */
 	@Override
@@ -63,6 +64,7 @@ public class ParallelArrayDictionary<Key, Value> implements Map<Key, Value> {
 
 	/**
 	 * Return whether the dictionary contains a mapping for the specified value.
+	 * @param value - the value to find
 	 * @return true if it does, false if it doesn't
 	 */
 	@Override
@@ -72,6 +74,7 @@ public class ParallelArrayDictionary<Key, Value> implements Map<Key, Value> {
 
 	/**
 	 * Get the value associated with the given key.
+	 * @param key - key to find the corresponding value for
 	 * @return the value. returns null if there is no mapping associated with this key.
 	 */
 	@Override
@@ -90,11 +93,10 @@ public class ParallelArrayDictionary<Key, Value> implements Map<Key, Value> {
 
 	/**
 	 * Associates the given value to the given key. If the key already exists in the dictionary, replace its old value with the given value
-	 * @param key
-	 * @param value
+	 * @param key - key to add or to change the value of
+	 * @param value - value to add or update with
 	 * @return the old value of the specified key. if the key did not already exist, returns null
 	 */
-	
 	@Override
 	public Value put(Key key, Value value) {
 		Value oldValue = null;
@@ -114,7 +116,7 @@ public class ParallelArrayDictionary<Key, Value> implements Map<Key, Value> {
 
 	/**
 	 * Removes the mapping of the specified key.
-	 * @param key
+	 * @param key - key to remove
 	 * @return the old value associated with the key. if there was no such key in the dictionary, returns null
 	 * 
 	 */
